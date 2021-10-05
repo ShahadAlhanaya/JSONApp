@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Enter € euro value"
-                android:inputType="textPersonName" />
+                android:inputType="numberDecimal" />
 
             <Spinner
                 android:id="@+id/spinner"
