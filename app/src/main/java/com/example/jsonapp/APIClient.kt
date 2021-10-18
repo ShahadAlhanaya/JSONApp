@@ -7,17 +7,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class APIClient {
-    private var retrofit : Retrofit? = null
-    private var baseUrl = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/"
+    companion object{
+        var retrofit : Retrofit? = null
+        var baseUrl = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/"
 
-    fun getClient(): Retrofit? {
-        val interceptor= HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(
-            GsonConverterFactory.create()).client(client).build()
-        return retrofit
+        fun getClient(): Retrofit? {
+            val interceptor= HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+            val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+            retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(
+                GsonConverterFactory.create()).client(client).build()
+            return retrofit
+        }
     }
+
 
 
 }

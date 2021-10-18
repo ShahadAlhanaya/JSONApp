@@ -81,17 +81,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getCurrency(onResult: (Currency?)->Unit) {
-        val apiInterface = APIClient().getClient()?.create(APIInterface::class.java)
+        val apiInterface = APIClient.getClient()?.create(APIInterface::class.java)
 
         if (apiInterface != null) {
             apiInterface.getCurrency()?.enqueue(object : Callback<Currency> {
                 override fun onResponse(call: Call<Currency>, response: Response<Currency>) {
-                    Log.d("MainActivity", response.body().toString())
+                    Log.d(Utilities.TAG, response.body().toString())
                     onResult(response.body())
                 }
                 override fun onFailure(call: Call<Currency>, t: Throwable) {
                     onResult(null)
-                    Log.d("MainActivity", "failed to call: ${t.message}")
+                    Log.d(Utilities.TAG, "failed to call: ${t.message}")
                     Toast.makeText(this@MainActivity, "something went wrong", Toast.LENGTH_SHORT).show()
                 }
             })
